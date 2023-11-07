@@ -36,12 +36,12 @@ class BaseModel:
 
     def __str__(self):
         """Defining str method"""
-        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
+        return "[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Defining save method"""
         self.updated_at = datetime.now()
-        storage.save()
+        self.storage.save()
 
     def to_dict(self):
         """Defining to_dict method"""
