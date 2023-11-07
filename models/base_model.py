@@ -36,11 +36,7 @@ class BaseModel:
 
     def __str__(self):
         """Defining str method"""
-<<<<<<< HEAD
-        return '[{}] ({})'.format(type(self).__name__, self.id)  
-=======
-        return "[{type(self).__name__}] ({self.id}) {self.__dict__}"
->>>>>>> 5f70e8af0ba1d62270359d582475b35c04882c2e
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Defining save method"""
