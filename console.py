@@ -1,27 +1,29 @@
 #!/usr/bin/python3
-"""create a console that contains 
-a command interpreter"""
+"""create a console that contains
+    a command interpreter"""
 
-import modules
+import models
 import cmd
+from models.base_model import BaseModel
+
 
 class HBNBCommand(cmd.Cmd):
-     """a command class that inherits from cmd"""
+    """a command class that inherits from cmd"""
     prompt = '(hbnb) '
 
     def do_quit(self, args):
-        """a command that exits the program"""
-        Exit (0)
+        """Quit command to exit the program"""
+        exit(0)
 
     def do_EOF(self, args):
-       """EOF exits the program"""
+        """EOF exits the program"""
         print("")
-        Exit (0)
-    
+        exit(0)
+
     def emptyline(self):
         """execute nothing"""
         pass
- 
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-  
