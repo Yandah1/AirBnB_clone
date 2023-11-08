@@ -1,2 +1,7 @@
 #!/usr/bin/python3
-""" Empty  file """
+'''creates a static FileStorage instance'''
+from .engine.file_storage import FileStorage
+
+storage = FileStorage()
+#storage._Filestorage__file_path = 'data.json'
+#storage._FileStorage__objects = {} models = {}
