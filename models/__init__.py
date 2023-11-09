@@ -3,5 +3,5 @@
 from .engine.file_storage import FileStorage
 
 storage = FileStorage()
-#storage._Filestorage__file_path = 'data.json'
-#storage._FileStorage__objects = {} models = {}
+# storage._Filestorage__file_path = 'data.json'
+# storage._FileStorage__objects = {} models = {}

@@ -32,7 +32,7 @@ class BaseModel:
     def __str__(self):
         """Defining str method"""
         return "[{}] ({}) {}".format(type(self).__name__,
-                self.id, self.__dict__)
+                                     self.id, self.__dict__)
 
     def save(self):
         """Defining save method"""

@@ -4,6 +4,8 @@
 import os
 import json
 from models.base_model import BaseModel
+from models.user import User
+
 
 class FileStorage:
     """Class for persistent storage"""
@@ -36,4 +38,12 @@ class FileStorage:
         with open(self.__file_path, 'r') as file:
             obj_dict = json.load(file)
             self.__objects = {k: models.__dict__[v['__class__']](**v)
-                        for k, v in obj_dict.items()}
+                              for k, v in obj_dict.items()}
+
+    def get_objs_by_class(self):
+        """get objects by thier class name"""
+        objects_by_class = {
+                "BaseModel": BaseModel,
+                "user": User
+                }
+        return objects_by_class
