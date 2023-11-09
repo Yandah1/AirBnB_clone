@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
 
         if len(args) < 1:
-            cls = arg[0]
+            cls = args[0]
         else:
             print("** class name missing **")
             return
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """Deletes an instance"""
         args = shlex.split(arg)
-        if len(arg) < 1:
+        if len(args) < 1:
             print("** class name missing **")
             return
 
@@ -151,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
 
         attribute_value = args[3]
 
-        instance = all_instancesl[key]
+        instance = all_instances[key]
         setattr(instance, attribute_name, attribute_value)
         instance.save()
 
