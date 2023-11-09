@@ -3,5 +3,6 @@
 from .engine.file_storage import FileStorage
 
 storage = FileStorage()
+storage.reload()
 #storage._Filestorage__file_path = 'data.json'
 #storage._FileStorage__objects = {} models = {}
