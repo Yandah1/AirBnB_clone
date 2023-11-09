@@ -3,7 +3,6 @@
 for other classes:"""
 import uuid
 from datetime import datetime
-from models import storage
 
 
 class BaseModel:
@@ -16,6 +15,7 @@ class BaseModel:
             *args: arguments
             **kwargs: key-value arguments
         """
+        from . import storage
         if kwargs:
             kwargs.pop("__class__", None)
             for key, value in kwargs.items():
@@ -36,6 +36,7 @@ class BaseModel:
 
     def save(self):
         """Defining save method"""
+        from models import storage
         self.updated_at = datetime.now()
         storage.save()
 

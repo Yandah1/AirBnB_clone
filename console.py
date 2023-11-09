@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of an instance"""
         args = shlex.split(arg)
 
-        if len(args) >= 1:
+        if len(args) < 1:
             cls = arg[0]
         else:
             print("** class name missing **")
@@ -61,18 +61,18 @@ class HBNBCommand(cmd.Cmd):
         if cls not in self.__classes:
             print("** class doesn't exist **")
             return
-        if len(args) >= 2:
+        if len(args) < 2:
             id = args[1]
         else:
             print("** instance id missing **")
             return
 
         key = cls + '.' + id
-        all = storage.all()
-        if key not in all:
+        all_instances = storage.all()
+        if key not in all_instances:
             print("** no instance found **")
             return
-        print(all[key])
+        print(all_instances[key])
 
     def do_destroy(self, arg):
         """Deletes an instance"""
@@ -80,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) < 1:
             print("** class name missing **")
             return
-        
+
         cls = args[0]
         if cls not in self.__classes:
             print("** class doesn't exist **")
@@ -90,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        id = args[1]   
+        id = args[1]
         key = cls + "." + id
         if key in models.storage.all():
             del models.storage.all()[key]
@@ -101,17 +101,60 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """print all string representation of instances"""
         args = shlex.split(arg)
-        
-        all = storage.all()
+
+        all_instances = storage.all()
         if len(args) < 1:
-           print([str(inst) for all.values()])
-           return
+            print([str(inst) for inst in all_instances.values()])
+            return
 
         cls = args[0]
         if cls not in self.__classes:
-           print("* class doesn't exist *")
-           return
-        print([str(inst) for inst in all.values() if type(inst).__name__ == cls])
+            print("* class doesn't exist *")
+            return
+
+        print([str(inst) for inst in all_instances.values() if
+              type(inst).__name__ == cls])
+
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id"""
+        args = shlex.split(arg)
+
+        if len(args) < 1:
+            print("** class name missing **")
+            return
+
+        cls = args[0]
+        if cls not in self.__classes:
+            print("** class doesn't exist **")
+            return
+
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+
+        id = args[1]
+        key = cls + '.' + id
+
+        all_instances = storage.all()
+        if key not in all_instances:
+            print("** no instance found **")
+            return
+
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+
+        attribute_name = args[2]
+        if len(args) < 4:
+            print("** value missing **")
+            return
+
+        attribute_value = args[3]
+
+        instance = all_instancesl[key]
+        setattr(instance, attribute_name, attribute_value)
+        instance.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

@@ -3,7 +3,7 @@
 
 import os
 import json
-import models
+from models.base_model import BaseModel
 
 class FileStorage:
     """Class for persistent storage"""
@@ -35,6 +35,5 @@ class FileStorage:
 
         with open(self.__file_path, 'r') as file:
             obj_dict = json.load(file)
-            obj_dict = {k: self.classes()[v['__class__']](**v)
+            self.__objects = {k: models.__dict__[v['__class__']](**v)
                         for k, v in obj_dict.items()}
-            self.__objects = obj_dict
