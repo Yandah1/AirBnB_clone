@@ -37,13 +37,19 @@ class FileStorage:
 
         with open(self.__file_path, 'r') as file:
             obj_dict = json.load(file)
-            self.__objects = {k: models.__dict__[v['__class__']](**v)
-                              for k, v in obj_dict.items()}
+            self.__objects = {}
+            for k, v in obj_dict.items():
+                class_name = v.get('__class__')    
+                if class_name and class_name in globals():
+                    self.__objects[k] = globals()[class_name](**v)
+                else:
+                   # Handle unknown class name
+                   print("Unknown class name: {}".format(class_name)) 
 
     def get_objs_by_class(self):
-        """get objects by thier class name"""
+        """get objects by their class name"""
         objects_by_class = {
                 "BaseModel": BaseModel,
-                "user": User
+                "User": User
                 }
         return objects_by_class
