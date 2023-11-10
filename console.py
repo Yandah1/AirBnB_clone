@@ -59,7 +59,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         cls = args[0]
-        data = []
         if cls not in self.classes:
             print("** class doesn't exist **")
             return
@@ -73,8 +72,7 @@ class HBNBCommand(cmd.Cmd):
         if key not in all_instances:
             print("** no instance found **")
         else:
-            data.append("[{}] ({}) {}".format(cls, ids, storage.all()[key]))
-            print(data)
+            print("[{}] ({}) {}".format(cls, ids, str(all_instances[key])))
 
     def do_destroy(self, arg):
         """Deletes an instance based on class name and id"""

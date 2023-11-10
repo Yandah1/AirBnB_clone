@@ -43,13 +43,5 @@ class FileStorage:
                 if class_name and class_name in globals():
                     self.__objects[k] = globals()[class_name](**v)
                 else:
-                   # Handle unknown class name
-                   print("Unknown class name: {}".format(class_name)) 
-
-    def get_objs_by_class(self):
-        """get objects by their class name"""
-        objects_by_class = {
-                "BaseModel": BaseModel,
-                "User": User
-                }
-        return objects_by_class
+                    # Handle unknown class name
+                   print("Unknown class name: {}".format(class_name))
