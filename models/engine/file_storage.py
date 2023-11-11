@@ -5,6 +5,11 @@ import os
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -30,6 +35,19 @@ class FileStorage:
         with open(self.__file_path, 'w') as file:
             json.dump(objs, file)
 
+    def objs_by_class(self):
+        """Returns dictionary of classes"""
+        objects_class = {
+                "BaseModel": BaseModel,
+                "User": User,
+                "State": State,
+                "City": City,
+                "Amenity": Amenity,
+                "Place": Place,
+                "Review": Review
+                }
+        return objects_class
+
     def reload(self):
         """Deserializes the JSON file to _objects"""
         if not os.path.isfile(self.__file_path):
@@ -39,9 +57,9 @@ class FileStorage:
             obj_dict = json.load(file)
             self.__objects = {}
             for k, v in obj_dict.items():
-                class_name = v.get('__class__')    
+                class_name = v.get('__class__')
                 if class_name and class_name in globals():
-                    self.__objects[k] = globals()[class_name](**v)
+                    self.__objectis[k] = globals()[class_name](**v)
                 else:
                     # Handle unknown class name
-                   print("Unknown class name: {}".format(class_name))
+                    print("Unknown class name: {}".format(class_name))

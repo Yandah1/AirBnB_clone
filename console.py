@@ -9,6 +9,11 @@ import shlex
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -51,6 +56,10 @@ class HBNBCommand(cmd.Cmd):
             new_inst = eval(arg)()
             new_inst.save()
             print(new_inst.id)
+
+        if cmd == "all":
+            self.do_all(args)
+            classes.all()
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
