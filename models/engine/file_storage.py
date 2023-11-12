@@ -21,16 +21,24 @@ class FileStorage:
         self.__objects[key] = obj
 
     def save(self):
-        """Saves all files"""
+        """Serialazes all files"""
         objs = {}
         for k, v in self.__objects.items():
             objs[k] = v.to_dict()
         with open(self.__file_path, 'w') as file:
             json.dump(objs, file)
 
-    def objs_by_class(self):
+    def objs_classes(self):
         """Returns dictionary of classes"""
-        objects_class = {
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.city import City
+        from models.review import Review
+
+        objs_classes = {
                 "BaseModel": BaseModel,
                 "User": User,
                 "State": State,
@@ -39,7 +47,7 @@ class FileStorage:
                 "Place": Place,
                 "Review": Review
                 }
-        return objects_class
+        return objs_classes
 
     def reload(self):
         """Deserializes the JSON file to _objects"""
@@ -48,14 +56,6 @@ class FileStorage:
 
         with open(self.__file_path, 'r') as file:
             obj_dict = json.load(file)
-            self.__objects = {}
-            for k, v in obj_dict.items():
-                class_name = v.get('__class__')
-                if class_name and class_name in globals():
-                    self.__objects[k] = globals()[class_name](**v)
-                else:
-                    # skip  unknown class name
-                    continue
-
-        for obj in self.__objects.values():
-            print(obj)
+            obj_dict = {k: self.objs_classes()[v["__class__"]](**v)
+                        for k, v in obj_dict.items()}
+            self.__objects = obj_dict
