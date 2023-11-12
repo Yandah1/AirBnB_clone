@@ -30,7 +30,7 @@ def parse(arg):
             return substr_list
     else:
         lexr = split(arg[:curly_braces.span()[0]])
-        substr_list = [i.strip(",") for i in lexer]
+        substr_list = [i.strip(",") for i in lexr]
         substr_list.append(curly_braces.group())
         return substr_list
 
@@ -44,12 +44,12 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """Quit command to exit the program
         """
-        exit(0)
+        return True
 
     def do_EOF(self, arg):
         """EOF exits the program"""
         print("")
-        exit(0)
+        return True
 
     def emptyline(self):
         """execute nothing"""

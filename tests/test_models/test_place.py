@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/usr/bin/python3
 """unittest for place class"""
 
@@ -9,25 +10,34 @@ import re
 import json
 from models.engine.file_storage
 import FileStorage
+=======
+#/usr/bin/python3
+"""Unittest for class Place"""
+>>>>>>> 64de3fe (tester)
 import os
-from models.base storage
-from models models.base_model import BaseModel
+from models import storage
+from models.base_model import BaseModel
+import unittest
 
 class TestPlace(unittest.TestCase):
-    """a unittest for Place Class"""
+    """Unittest for Place Class"""
 
     def setUp(self):
-      """a set up for the test methods"""
-      pass
+        """a set up for the test methods"""
+        pass
 
     def tearDown(self):
-      """tears down the methods"""
-      self.resetStorage()
-      pass
+        """tears down the methods"""
+        self.resetStorage()
+        pass
 
     def resetStorage(self):
-      """"resets data of FileStorage"""
+        """"resets data of FileStorage"""
+        FileStorage._FileStorage_objects = {}
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.remove(FileStorage._FileStorage__file_path)
 
+<<<<<<< HEAD
  FileStorage._FileStorage_objects = {}
      if os.path.isfile(FileStorage._FileStorage__file_path):
 
@@ -54,3 +64,8 @@ class TestPlace(unittest.TestCase):
  if _name_ == "_main_":
      unittest.main()   
  
+=======
+
+if __name__ == "__main__":
+        unittest.main()
+>>>>>>> 64de3fe (tester)
