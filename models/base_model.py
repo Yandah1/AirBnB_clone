@@ -15,7 +15,7 @@ class BaseModel:
             *args: arguments
             **kwargs: key-value arguments
         """
-        from . import storage
+        from . import storage # Import with the methond
         if kwargs:
             kwargs.pop("__class__", None)
             for key, value in kwargs.items():
@@ -36,7 +36,7 @@ class BaseModel:
 
     def save(self):
         """Defining save method"""
-        from models import storage
+        from models import storage  # Import with the methond
         self.updated_at = datetime.now()
         storage.save()
 
@@ -47,3 +47,7 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
+
+# Creating an instance of BaseModel anf printing it
+obj = BaseModel()
+print(obj)

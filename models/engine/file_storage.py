@@ -3,13 +3,7 @@
 
 import os
 import json
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
+import models
 
 
 class FileStorage:
@@ -18,7 +12,7 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """Returns _objects dictionary"""
+        """Returns __objects dictionary"""
         return self.__objects
 
     def new(self, obj):
@@ -31,7 +25,6 @@ class FileStorage:
         objs = {}
         for k, v in self.__objects.items():
             objs[k] = v.to_dict()
-
         with open(self.__file_path, 'w') as file:
             json.dump(objs, file)
 
@@ -59,7 +52,10 @@ class FileStorage:
             for k, v in obj_dict.items():
                 class_name = v.get('__class__')
                 if class_name and class_name in globals():
-                    self.__objectis[k] = globals()[class_name](**v)
+                    self.__objects[k] = globals()[class_name](**v)
                 else:
-                    # Handle unknown class name
-                    print("Unknown class name: {}".format(class_name))
+                    # skip  unknown class name
+                    continue
+
+        for obj in self.__objects.values():
+            print(obj)
