@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """BaseModel that defines all common attributes/methods
-for other classes:"""
+for other classes for Airbnb console"""
 import uuid
 from datetime import datetime
 from models import storage

@@ -19,7 +19,7 @@ class TestFileStorage(unittest.TestCase):
         """Test that all() returns an empty dictionary initially"""
         result = self.storage.all()
         self.assertIsInstance(result, dict)
-        self.assertEqual(len(result), 1)
+        self.assertEqual(len(result), 0)
 
     def test_new_object(self):
         """ Test that new() adds a new object to the storage"""
@@ -27,7 +27,7 @@ class TestFileStorage(unittest.TestCase):
         self.storage.new(model)
         result = self.storage.all()
         self.assertIsInstance(result, dict)
-        self.assertEqual(len(result), 2)
+        self.assertEqual(len(result), 1)
         key = "{}.{}".format(model.__class__.__name__, model.id)
         self.assertIn(key, result)
 
