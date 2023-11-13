@@ -43,7 +43,6 @@ class TestPlace(unittest.TestCase):
         """
         Tests the instantiation of Place class
         """
-
         b = Place()
         self.assertEqual(str(type(b)), "<class 'models.place.Place'>")
         self.assertIsInstance(b, Place)
@@ -56,7 +55,7 @@ class TestPlace(unittest.TestCase):
         attributes = storage.attributes()["Place"]
         o = Place()
         for k, v in attributes.items():
-            self.assertTrue(hasattr(o, k))
+            self.assertTrue(hasattr(o, k), f"Attribute {k} is not set.")
             self.assertEqual(type(getattr(o, k, None)), v)
 
 
