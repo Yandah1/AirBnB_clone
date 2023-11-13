@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""unittest for review Class"""
+"""Defines unittest for Review Class"""
 
 import unittest
 from datetime import datetime
@@ -14,39 +14,51 @@ from models.base_model import BaseModel
 
 
 class TestReview(unittest.TestCase):
-"""unittest for review class"""
+    """
+    Unittest for Review class
+    """
 
-   def setUp(self):
-     """sets up the test methods"""
+    def setUp(self):
+        """
+        Sets up the test methods
+        """
         pass
 
-   def tearDown(self):
-     """tears down test methods"""
+    def tearDown(self):
+        """
+        Tears down the test methods
+        """
         self.resetStorage()
         pass
 
-   def resetStorage(self):
-     """resets data from FileStorage"""
-       FileStorage._FileStorage__objects = {}
-    if os.path.isfile(FileStorage._FileStorage__file_path):
-       os.remove(FileStorage._FileStorage__file_path)
+    def resetStorage(self):
+        """
+        Resets the FileStorage data
+        """
+        FileStorage._FileStorage__objects = {}
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.remove(FileStorage._FileStorage__file_path)
 
-   def test_8_instantiation(self):
-     """tests instantiation of review class"""
-    
-       b = Review()
-       self.assertEqual(str(type(b)), "<class 'models.review.Review'>")
-       self.assertIsInstance(b, Review)
-       self.assertTrue(issubclass(type(b), BaseModel))
+    def test_8_instantiation(self):
+        """
+        Tests the instantiation of Review class
+        """
 
-   def test_8_attributes(self):
-     """tests the review class attributes"""
-       attributes = storage.attributes()["Review"]
-       o = Review()
-    for k, v in attributes.items():
-       self.assertTrue(hasattr(o, k))
-       self.assertEqual(type(getattr(o, k, None)), v)
+        b = Review()
+        self.assertEqual(str(type(b)), "<class 'models.review.Review'>")
+        self.assertIsInstance(b, Review)
+        self.assertTrue(issubclass(type(b), BaseModel))
+
+    def test_8_attributes(self):
+        """
+        Tests attributes of Review class
+        """
+        attributes = storage.attributes()["Review"]
+        o = Review()
+        for k, v in attributes.items():
+            self.assertTrue(hasattr(o, k))
+            self.assertEqual(type(getattr(o, k, None)), v)
 
 
-     if __name__ == "__main__":
-        unittest.main()
+if __name__ == "__main__":
+    unittest.main()

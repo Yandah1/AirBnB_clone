@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""unittest the for city class"""
+"""Defines unittest for City Class"""
 
 import unittest
 from datetime import datetime
@@ -14,39 +14,51 @@ from models.base_model import BaseModel
 
 
 class TestCity(unittest.TestCase):
-"""unittest for city class"""
+    """
+    Unittest for City class
+    """
 
-   def setUp(self):
-     """sets up test methods"""
+    def setUp(self):
+        """
+        Sets up the test methods
+        """
         pass
 
-   def tearDown(self):
-     """tears down the test methods"""
+    def tearDown(self):
+        """
+        Tears down the test methods
+        """
         self.resetStorage()
         pass
 
-   def resetStorage(self):
-     """resets data from FileStorage"""
+    def resetStorage(self):
+        """
+        Resets the FileStorage data
+        """
         FileStorage._FileStorage__objects = {}
-     if os.path.isfile(FileStorage._FileStorage__file_path):
-        os.remove(FileStorage._FileStorage__file_path)
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.remove(FileStorage._FileStorage__file_path)
 
-   def test_8_instantiation(self):
-     """tests instantiation of the city class"""
+    def test_8_instantiation(self):
+        """
+        Tests the instantiation of City class
+        """
 
         b = City()
         self.assertEqual(str(type(b)), "<class 'models.city.City'>")
         self.assertIsInstance(b, City)
         self.assertTrue(issubclass(type(b), BaseModel))
 
-   def test_8_attributes(self):
-     """tests city class attributes"""
+    def test_8_attributes(self):
+        """
+        Tests attributes of City class
+        """
         attributes = storage.attributes()["City"]
         o = City()
-    for k, v in attributes.items():
-        self.assertTrue(hasattr(o, k))
-        self.assertEqual(type(getattr(o, k, None)), v)
+        for k, v in attributes.items():
+            self.assertTrue(hasattr(o, k))
+            self.assertEqual(type(getattr(o, k, None)), v)
 
 
-     if __name__ == "__main__":
-        unittest.main()
+if __name__ == "__main__":
+    unittest.main()

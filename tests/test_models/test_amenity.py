@@ -1,50 +1,65 @@
 #!/usr/bin/python3
+"""Defines unittest for Amenity Class"""
+
+import unittest
+from datetime import datetime
 import time
-from models.amenity import amenity
+from models.amenity import Amenity
 import re
 import json
-from models.engine.file_storage
-import FileStorage
+from models.engine.file_storage import FileStorage
 import os
 from models import storage
 from models.base_model import BaseModel
 
+
 class TestAmenity(unittest.TestCase):
-    """unittest for testing amenity class"""
+    """
+    Unittest for Amenity class
+    """
 
     def setUp(self):
-      """sets test methods of amenity class"""         
-      pass
+        """
+        Sets up the test methods
+        """
+        pass
 
     def tearDown(self):
-      """tears down methods of amenity class"""
-      self.resetStorage(self)
-      pass
+        """
+        Tears down the test methods
+        """
+        self.resetStorage()
+        pass
 
-    def resetSorage(self):
-      """resets Filestorage data"""
+    def resetStorage(self):
+        """
+        Resets the FileStorage data
+        """
 
- FileStorage._FileStorage__objects = {} 
-      if os.path.isfile(FileStorage.FileStorage__file_path):
+        FileStorage._FileStorage__objects = {}
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.remove(FileStorage._FileStorage__file_path)
 
- os.remove(FileStorage._FileStorage__file_path)
+    def test_8_instantiation(self):
+        """
+        Tests the instantiation of Amenity class
+        """
 
-    def test_8_intantiation(self):
-      """tests the instantiation of amenity class"""
-      b = Amenity()
-      self.assertEqual(str(type(b)), "<class 'models.amenity.Amenity'>")
-      self.assertlslnstance(b, Amenity)
-
- self.assertTrue(issubclass(type(b), Basemodel))
+        b = Amenity()
+        self.assertEqual(str(type(b)), "<class 'models.amenity.Amenity'>")
+        self.assertIsInstance(b, Amenity)
+        self.assertTrue(issubclass(type(b), BaseModel))
 
     def test_8_attributes(self):
-      """tests attributes of the amenity class"""
-      attributes = storage.attributes()
- ["Amenity"]
-     o = Amenity()
-     for k, v in attributes.items():
-         self.assertTrue(hasattr(o, k))
-         self.assertEqual(type(getattr(o, k, None)), v)
+        """
+        Tests attributes of Amenity class
+        """
+        attributes = storage.attributes()["Amenity"]
+        o = Amenity()
+        for k, v in attributes.items():
+            self.assertTrue(hasattr(o, k))
+            self.assertEqual(type(getattr(o, k, None)), v)
 
- if _name_ == "_main_":
-     unittest.main()  
+
+if __name__ == "__main__":
+    unittest.main()
