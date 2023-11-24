@@ -3,21 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <title>AirBnB Clone</title>
-        <link rel="stylesheet" href="styles/4-common.css" type="text/css">
-        <link rel="stylesheet" href="styles/3-header.css" type="text/css">
-        <link rel="stylesheet" href="styles/3-footer.css" type="text/css">
-        <link rel="stylesheet" href="styles/6-filters.css" type="text/css">
-        <link rel="stylesheet" href="styles/8-places.css" type="text/css">
+	<link rel="stylesheet" href="styles/4-common.css">  <!-- type="text/css -->
+	<link rel="stylesheet" href="styles/3-header.css">
+        <link rel="stylesheet" href="styles/3-footer.css">
+	<link rel="stylesheet" href="styles/6-filters.css">
+	<link rel="stylesheet" href="styles/8-places.css"> 
         <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
     </head>
     <body>
         <header></header>
-        <!-- container begins here  -->
+	<!-- container begins here  -->
         <div class="container">
             <section class="filters">
                 <div class="locations">
                     <h3>States</h3>
-                    <h4>North West, SunCity...</h4
+                    <h4>North West, SunCity...</h4>
                     <div class="popover">
                         <ul>
                             <li>
@@ -57,7 +57,9 @@
                 <button>Search</button>
             </section>
             <section class="places">
-                <h1>Places</h1>
+                <h1 class="title">
+                    Places
+                </h1>
                 <article>
                     <div class="article_header">
                         <h2>My home</h2>
@@ -80,7 +82,11 @@
                         <p><strong>Owner:  </strong>John Lenon</p>
                     </div>
                     <div class="description">
-                        <p>my description to come</p>
+                        <p>Welcome to 'My Home' - a cozy haven that whispers serenity.  
+                            $80 retreat for 2. Elegant 1 bed, 1 bath, hosted by John Lennon. 
+                            Book your stay now and let the tranquility unfold!"
+                            Your cozy escape awaits!"
+                        </p>
                     </div>
                 </article>
                 <article>
@@ -105,10 +111,14 @@
                         <p><strong>Owner:  </strong>Addanne</p>
                     </div>
                     <div class="description">
-                        <p>my description to come</p>
+                        <p>"Welcome to 'Tiny House' – a charming retreat for $65.
+                            Ideal for 4 guests, this compact gem features 2 bedrooms, 1 bathroom,
+                            and is proudly hosted by Addanne. Experience big moments in a tiny space.
+                            Book your escape now!"
+                        </p>
                     </div>  
                 </article>
-                <article>
+                <article class="centered">
                     <div class="article_header">
                         <h2>A suite</h2>
                         <div class="price_by_night">
@@ -127,14 +137,18 @@
                         </div>
                     </div>
                     <div class="user">
-                        <p><strong>Owner:  </strong>Yandaa Nonkuu</p>
+                        <p><strong>Owner:  </strong>Bill Zukerberg</p>
                     </div>
                     <div class="description">
-                        <p>my description to come</p>
+                        <p>"Indulge in luxury at 'A Suite' – priced at $190, 
+                            this lavish sanctuary accommodates up to 5 guests across 3 bedrooms and 2 bathrooms. 
+                            Your refined escape awaits. Elevate your stay and book 'A Suite' 
+                            for an unforgettable experience!"
+                        </p>
                     </div> 
                 </article>
             </section> 
-    <!-- end of the container -->      
+    <!-- end of the container -->
         </div>
         <footer>
             <p>Best School</p>
